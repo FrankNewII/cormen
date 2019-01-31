@@ -1,3 +1,5 @@
+import {Heap} from '../data-structures/Heap'
+
 class Sorter {
     constructor() {
         throw new Error({
@@ -38,7 +40,12 @@ class Sorter {
 
 
     static quickSort(arr, startPos, toPos) {
-        if (startPos < toPos ) {
+        if (startPos === undefined) {
+            startPos = 0;
+            toPos = arr.length - 1;
+        }
+
+        if (startPos < toPos) {
             let divideIdx = Sorter._quickSortPortion(arr, startPos, toPos);
             Sorter.quickSort(arr, startPos, divideIdx);
             Sorter.quickSort(arr, divideIdx + 1, toPos);
@@ -52,20 +59,19 @@ class Sorter {
         let lastIdx = toPos + 1;
 
 
-
-        while(true) {
+        while (true) {
 
             do {
                 lastIdx--;
-            } while (arr[lastIdx] > currentValue );
+            } while (arr[lastIdx] > currentValue);
 
             do {
                 startIdx++;
-            } while (arr[startIdx] < currentValue );
+            } while (arr[startIdx] < currentValue);
 
             if (arr[startIdx] > arr[lastIdx]) {
 
-                if (lastIdx <= startIdx ) {
+                if (lastIdx <= startIdx) {
                     return startIdx - 1;
                 }
 
@@ -79,5 +85,16 @@ class Sorter {
                 return startIdx;
             }
         }
+    }
+
+    static heapSort(arr) {
+        let heap = new Heap(arr);
+        let sortedArr = [];
+
+        while (heap.size) {
+            sortedArr.push(heap.extractMin());
+        }
+
+        return sortedArr;
     }
 }
