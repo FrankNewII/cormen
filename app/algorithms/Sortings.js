@@ -92,7 +92,7 @@ class Sorter {
         let sortedArr = [];
 
         while (heap.size) {
-            sortedArr.push(heap.extractMin());
+            sortedArr.unshift(heap.extractMax());
         }
 
         return sortedArr;

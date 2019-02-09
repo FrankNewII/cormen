@@ -1,48 +1,61 @@
 export class Heap {
-    constructor(arr, i, parent) {
-        this.arr = arr;
+    constructor(arr) {
+        this._heap = arr.map(v => v);
+        this._build();
+    }
 
-        if( !i ) {
-            i = 0;
+    _heapify(currentIdx) {
+        let leftVertexId;
+        let rightVertexId;
+        let largestVertexId;
+        let temp;
 
+        while(1)
+        {
+            leftVertexId = 2 * currentIdx + 1;
+            rightVertexId = 2 * currentIdx + 2;
+            largestVertexId = currentIdx;
 
-            this.value = arr[i];
-            this.commonParams = {i, size: arr.length};
+            if (this._heap[leftVertexId] && leftVertexId < this.heapSize && this._heap[leftVertexId] > this._heap[largestVertexId])
+            {
+                largestVertexId = leftVertexId;
+            }
 
-            this.left = new Heap(arr, this.i, this);
-            this.right = new Heap(arr, this.i, this);
+            if (this._heap[rightVertexId] && rightVertexId < this.heapSize && this._heap[rightVertexId] > this._heap[largestVertexId])
+            {
+                largestVertexId = rightVertexId;
+            }
 
-            this.left._build();
-            this.right._build();
-        } else {
-            this.i = i;
-            this.value = arr[++this.i];
+            if (largestVertexId === currentIdx)
+            {
+                break;
+            }
 
-            this.parent = parent;
+            temp = this._heap[currentIdx];
+            this._heap[currentIdx] = this._heap[largestVertexId];
+            this._heap[largestVertexId] = temp;
+            currentIdx = largestVertexId;
         }
 
     }
 
     _build() {
-        this.left = new Heap(this.arr, this.i, this);
-        this.right = new Heap(this.arr, this.i, this);
+        for (let i = Math.floor(this.heapSize / 2 ); i >= 0; i--)
+        {
+            this._heapify(i);
+        }
     }
 
-    _heapify() {
-        return Math.floor(i / 2);
-    }
-
-    extractMin() {
-        this.commonParams.size--;
-
-        return this.value;
-    }
-}
-
-export class PriorityQueue extends Heap {
     extractMax() {
-        this.commonParams.size--;
+        let maxVal = this._heap[0];
+        this._heap[0] = this._heap[this.heapSize - 1];
+        this._heap.length = this.heapSize - 1;
+        this._heapify(0);
 
-        return this.value;
+        return maxVal;
+    }
+
+    get heapSize() {
+        return this._heap.length ;
     }
 }
