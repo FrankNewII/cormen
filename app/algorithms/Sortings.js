@@ -33,11 +33,27 @@ class Sorter {
             let id2 = divideIdx;
 
             while(arr[id2] < v1 && id2 <= to ) id2++;
-
-
         }
     }*/
 
+
+    static insertionSort(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            let val = arr[i];
+
+            for (let i2 = 0; i2 <= i && i > 0; i2++) {
+                 let compareVal = arr[i2];
+
+                 if (compareVal >= val || i === i2) {
+
+                    arr.splice(i2, 0, ...arr.splice(i, 1));
+                    break;
+                 }
+            }
+        }
+
+        return arr;
+    }
 
     static quickSort(arr, startPos, toPos) {
         if (startPos === undefined) {
@@ -91,7 +107,7 @@ class Sorter {
         let heap = new Heap(arr);
         let sortedArr = [];
 
-        while (heap.size) {
+        while (heap.heapSize) {
             sortedArr.unshift(heap.extractMax());
         }
 

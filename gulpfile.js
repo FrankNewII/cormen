@@ -12,13 +12,8 @@ gulp.task('watch', function () {
     gulp.watch(gulpConfig.watchJS, ['_reload']);
 });
 
-gulp.task('connect', function () {
-
-});
-
 gulp.task('_reload', function () {
     connect.reload();
-    console.log(connect.reload);
 });
 
 gulp.task('default', function () {
