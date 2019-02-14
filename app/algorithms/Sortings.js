@@ -36,6 +36,27 @@ class Sorter {
         }
     }*/
 
+    static countingSort(arr) {
+        let countingObj = {};
+
+        arr.forEach(v => countingObj[v] = (countingObj[v] || 0) + 1 );
+
+        let countedDigits = Object.keys(countingObj);
+
+        let sortedArr = new Array(arr.length);
+
+        for( let i = 1; i < countedDigits.length; i++ ) {
+            var key = countedDigits[i];
+            countingObj[key] = countingObj[key] + countingObj[countedDigits[i - 1]];
+        }
+
+        arr.forEach( v => {
+            sortedArr[countingObj[v] - 1] = v;
+            --countingObj[v];
+        });
+
+        return sortedArr;
+    }
 
     static insertionSort(arr) {
         for (let i = 0; i < arr.length; i++) {
