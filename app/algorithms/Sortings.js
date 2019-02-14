@@ -50,10 +50,10 @@ class Sorter {
             countingObj[key] = countingObj[key] + countingObj[countedDigits[i - 1]];
         }
 
-        arr.forEach( v => {
+        arr.reduceRight( (a, v) => {
             sortedArr[countingObj[v] - 1] = v;
             --countingObj[v];
-        });
+        }, 0);
 
         return sortedArr;
     }
