@@ -135,7 +135,7 @@ class Sorter {
         return sortedArr;
     }
 
-    static digitalSort(arr) {
+    static radixSort(arr, getNumbFn) {
         let columnsSort = JSON.parse(JSON.stringify((new Array(10)).fill([])));
         let sorted = false;
         let cycleTimes = 0;
@@ -143,7 +143,7 @@ class Sorter {
         while (!sorted) {
             var sortedDigits = 0;
             arr = arr.filter( v => {
-                let str = v.toString();
+                let str = (getNumbFn && getNumbFn(v).toString()) || v.toString();
                 let strDigit = str.charAt(str.length - 1 - cycleTimes );
 
                 if (strDigit) {
