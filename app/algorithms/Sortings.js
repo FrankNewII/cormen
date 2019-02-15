@@ -134,4 +134,41 @@ class Sorter {
 
         return sortedArr;
     }
+
+    static digitalSort(arr) {
+        let columnsSort = JSON.parse(JSON.stringify((new Array(10)).fill([])));
+        let sorted = false;
+        let cycleTimes = 0;
+
+        while (!sorted) {
+            var sortedDigits = 0;
+            arr = arr.filter( v => {
+                let str = v.toString();
+                let strDigit = str.charAt(str.length - 1 - cycleTimes );
+
+                if (strDigit) {
+                    sortedDigits++;
+                    columnsSort[+strDigit].push(v);
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+            columnsSort.forEach( (numbers, i, columnsSort) => {
+                columnsSort[i] = numbers.filter( number => {
+                    arr.push(number);
+                    return false;
+                });
+            });
+
+            if (sortedDigits > 1) {
+                cycleTimes++;
+            } else {
+                sorted = true;
+            }
+        }
+
+        return arr;
+    }
 }
