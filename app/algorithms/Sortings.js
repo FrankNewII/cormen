@@ -39,18 +39,18 @@ class Sorter {
     static countingSort(arr) {
         let countingObj = {};
 
-        arr.forEach(v => countingObj[v] = (countingObj[v] || 0) + 1 );
+        arr.forEach(v => countingObj[v] = (countingObj[v] || 0) + 1);
 
         let countedDigits = Object.keys(countingObj);
 
         let sortedArr = new Array(arr.length);
 
-        for( let i = 1; i < countedDigits.length; i++ ) {
+        for (let i = 1; i < countedDigits.length; i++) {
             var key = countedDigits[i];
             countingObj[key] = countingObj[key] + countingObj[countedDigits[i - 1]];
         }
 
-        arr.reduceRight( (a, v) => {
+        arr.reduceRight((a, v) => {
             sortedArr[countingObj[v] - 1] = v;
             --countingObj[v];
         }, 0);
@@ -63,13 +63,13 @@ class Sorter {
             let val = arr[i];
 
             for (let i2 = 0; i2 <= i && i > 0; i2++) {
-                 let compareVal = arr[i2];
+                let compareVal = arr[i2];
 
-                 if (compareVal >= val || i === i2) {
+                if (compareVal >= val || i === i2) {
 
                     arr.splice(i2, 0, ...arr.splice(i, 1));
                     break;
-                 }
+                }
             }
         }
 
@@ -129,7 +129,7 @@ class Sorter {
         let sortedArr = [];
 
         while (heap.heapSize) {
-            sortedArr.unshift(heap.extractMax());
+            sortedArr.unshift(heap.extractHighest());
         }
 
         return sortedArr;
@@ -142,9 +142,9 @@ class Sorter {
 
         while (!sorted) {
             var sortedDigits = 0;
-            arr = arr.filter( v => {
+            arr = arr.filter(v => {
                 let str = (getNumbFn && getNumbFn(v).toString()) || v.toString();
-                let strDigit = str.charAt(str.length - 1 - cycleTimes );
+                let strDigit = str.charAt(str.length - 1 - cycleTimes);
 
                 if (strDigit) {
                     sortedDigits++;
@@ -155,8 +155,8 @@ class Sorter {
                 }
             });
 
-            columnsSort.forEach( (numbers, i, columnsSort) => {
-                columnsSort[i] = numbers.filter( number => {
+            columnsSort.forEach((numbers, i, columnsSort) => {
+                columnsSort[i] = numbers.filter(number => {
                     arr.push(number);
                     return false;
                 });
@@ -168,6 +168,26 @@ class Sorter {
                 sorted = true;
             }
         }
+
+        return arr;
+    }
+
+    static bucketSort(arr) {
+        let n = arr.length;
+        let sortableObj = {};
+
+        arr = arr.filter(v => {
+            let k = Math.floor(v * n);
+            if (sortableObj[k] || (sortableObj[k] = [])) {
+                sortableObj[k].push(v);
+            }
+
+            return false;
+        });
+
+        let keys = Object.keys(sortableObj);
+        debugger;
+        keys.forEach( v => arr.push(...Sorter.insertionSort(sortableObj[v])) );
 
         return arr;
     }

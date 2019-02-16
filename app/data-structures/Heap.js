@@ -16,12 +16,12 @@ export class Heap {
             rightVertexId = 2 * currentIdx + 2;
             largestVertexId = currentIdx;
 
-            if (this._heap[leftVertexId] && leftVertexId < this.heapSize && this._heap[leftVertexId] > this._heap[largestVertexId])
+            if (this._heapCompareVals(leftVertexId, largestVertexId))
             {
                 largestVertexId = leftVertexId;
             }
 
-            if (this._heap[rightVertexId] && rightVertexId < this.heapSize && this._heap[rightVertexId] > this._heap[largestVertexId])
+            if (this._heapCompareVals(rightVertexId, largestVertexId))
             {
                 largestVertexId = rightVertexId;
             }
@@ -36,7 +36,6 @@ export class Heap {
             this._heap[largestVertexId] = temp;
             currentIdx = largestVertexId;
         }
-
     }
 
     _build() {
@@ -46,7 +45,16 @@ export class Heap {
         }
     }
 
-    extractMax() {
+    _getComparedValue(idx) {
+        return this._heap[idx];
+    }
+
+    _heapCompareVals(idx, largestIdx) {
+        return this._getComparedValue(idx) && idx < this.heapSize
+            && this._getComparedValue(idx) > this._getComparedValue(largestIdx);
+    }
+
+    extractHighest() {
         let maxVal = this._heap[0];
         this._heap[0] = this._heap[this.heapSize - 1];
         this._heap.length = this.heapSize - 1;
@@ -56,6 +64,6 @@ export class Heap {
     }
 
     get heapSize() {
-        return this._heap.length ;
+        return this._heap.length;
     }
 }
