@@ -1,4 +1,5 @@
 import {Heap} from '../data-structures/Heap'
+import {Numbers} from "./Numbers";
 
 class Sorter {
     constructor() {
@@ -8,6 +9,7 @@ class Sorter {
         });
 
     }
+
 
     /*static mergeSort(arr, start, to ) {
 
@@ -67,7 +69,7 @@ class Sorter {
 
                 if (compareVal >= val || i === i2) {
 
-                    arr.splice(i2, 0, ...arr.splice(i, 1));
+                    arr.splice(i2, 0, arr.splice(i, 1)[0]);
                     break;
                 }
             }
@@ -87,6 +89,8 @@ class Sorter {
             Sorter.quickSort(arr, startPos, divideIdx);
             Sorter.quickSort(arr, divideIdx + 1, toPos);
         }
+
+        return arr;
     }
 
     static _quickSortPortion(arr, startPos, toPos) {
@@ -122,6 +126,31 @@ class Sorter {
                 return startIdx;
             }
         }
+    }
+
+    static randomizedQuickSort(arr, startPos, toPos) {
+        if (startPos === undefined) {
+            startPos = 0;
+            toPos = arr.length - 1;
+        }
+
+        if (startPos < toPos) {
+            let divideIdx = Sorter._quickSortRandomizedPortion(arr, startPos, toPos);
+            Sorter.quickSort(arr, startPos, divideIdx);
+            Sorter.quickSort(arr, divideIdx + 1, toPos);
+        }
+
+        return arr;
+    }
+
+    static _quickSortRandomizedPortion(arr, startPos, toPos) {
+        let randomIdx = Math.round(Numbers.random(startPos, toPos));
+        let startVal = arr[randomIdx];
+        arr[randomIdx] = arr[startPos];
+        arr[startPos] = startVal;
+
+        return Sorter._quickSortPortion(arr, startPos, toPos);
+
     }
 
     static heapSort(arr) {

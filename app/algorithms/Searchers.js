@@ -1,3 +1,5 @@
+import {Sortings} from '../algorithms/Sortings'
+
 export class Searchers {
 
     static minMax(arr) {
@@ -39,5 +41,20 @@ export class Searchers {
         }
 
         return {min, max};
+    }
+
+    static orderStatic(arr, i, startPos, toPos ) {
+        if (startPos === toPos ) {
+            return arr[toPos];
+        }
+
+        let dividerIdx = Sortings._quickSortRandomizedPortion(arr, startPos, toPos );
+        let realDividerIdx = dividerIdx - startPos + 1;
+
+        if (i <= realDividerIdx) {
+            return Searchers.orderStatic(arr, i, startPos, dividerIdx );
+        } else {
+            return Searchers.orderStatic(arr, i, dividerIdx + 1, toPos );
+        }
     }
 }
