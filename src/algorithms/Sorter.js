@@ -1,7 +1,7 @@
 import {Heap} from '../data-structures/Heap'
 import {Numbers} from "./Numbers";
 
-class Sorter {
+export class Sorter {
     constructor() {
         throw new Error({
             section: 'sorting',
@@ -93,39 +93,30 @@ class Sorter {
         return arr;
     }
 
-    static _quickSortPortion(arr, startPos, toPos) {
-        let currentValue = arr[startPos];
+    static _quickSortPortion(arr, startPos, toPos, currentValue ) {
+        currentValue = currentValue || arr[startPos];
 
-        let startIdx = startPos - 1;
-        let lastIdx = toPos + 1;
+        let i = startPos,
+            j = toPos;
 
+        while (i <= j) {
+            while (arr[i] < currentValue) {
+                i++;
+            }
 
-        while (true) {
+            while (arr[j] > currentValue) {
+                j--;
+            }
 
-            do {
-                lastIdx--;
-            } while (arr[lastIdx] > currentValue);
-
-            do {
-                startIdx++;
-            } while (arr[startIdx] < currentValue);
-
-            if (arr[startIdx] > arr[lastIdx]) {
-
-                if (lastIdx <= startIdx) {
-                    return startIdx - 1;
-                }
-
-                let oldVal = arr[startIdx];
-
-                arr[startIdx] = arr[lastIdx];
-
-                arr[lastIdx] = oldVal;
-
-            } else {
-                return startIdx;
+            if (i <= j) {
+                var oldVal = arr[j];
+                arr[j] = arr[i];
+                arr[i] = oldVal;
+                i++;
+                j--;
             }
         }
+        return i;
     }
 
     static randomizedQuickSort(arr, startPos, toPos) {
