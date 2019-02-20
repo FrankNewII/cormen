@@ -84,30 +84,34 @@ export class Sorter {
             toPos = arr.length - 1;
         }
 
-        if (startPos < toPos) {
+        if (startPos < toPos ) {
             let divideIdx = Sorter._quickSortPortion(arr, startPos, toPos);
-            Sorter.quickSort(arr, startPos, divideIdx);
-            Sorter.quickSort(arr, divideIdx + 1, toPos);
+
+            if (startPos < divideIdx - 1) {
+                Sorter.quickSort(arr, startPos, divideIdx - 1);
+            }
+
+            if (divideIdx < toPos) {
+                Sorter.quickSort(arr, divideIdx, toPos);
+            }
         }
 
         return arr;
     }
 
-    static _quickSortPortion(arr, startPos, toPos, currentValue ) {
+    static _quickSortPortion(arr, startPos, toPos, currentValue) {
         currentValue = currentValue || arr[startPos];
 
-        let i = startPos,
+        var i = startPos,
             j = toPos;
 
         while (i <= j) {
             while (arr[i] < currentValue) {
                 i++;
             }
-
             while (arr[j] > currentValue) {
                 j--;
             }
-
             if (i <= j) {
                 var oldVal = arr[j];
                 arr[j] = arr[i];
@@ -207,7 +211,7 @@ export class Sorter {
 
         let keys = Object.keys(sortableObj);
         debugger;
-        keys.forEach( v => arr.push(...Sorter.insertionSort(sortableObj[v])) );
+        keys.forEach(v => arr.push(...Sorter.insertionSort(sortableObj[v])));
 
         return arr;
     }
