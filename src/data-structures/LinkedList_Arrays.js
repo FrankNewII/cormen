@@ -1,6 +1,6 @@
 import Stack from './Stack';
 
-export class LinkedList_Arrays {
+export default class LinkedList_Arrays {
 
     constructor(val) {
         this._vals = [val];

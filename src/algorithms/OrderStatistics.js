@@ -1,6 +1,6 @@
-import {Sorter} from './Sorter'
+import Sorter from './Sorter'
 
-export class OrderStatistics {
+export default class OrderStatistics {
 
     static minMax(arr) {
         let min, max;

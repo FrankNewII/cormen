@@ -1,7 +1,7 @@
-import {Heap} from '../data-structures/Heap'
-import {Numbers} from "./Numbers";
+import Heap from '../data-structures/Heap'
+import Numbers from "./Numbers";
 
-export class Sorter {
+export default class Sorter {
     constructor() {
         throw new Error({
             section: 'sorting',

@@ -1,6 +1,6 @@
-import {Heap} from '../data-structures/Heap'
+import Heap from '../data-structures/Heap'
 
-export class MaxHeap extends Heap {
+export default  class MaxHeap extends Heap {
 
     constructor(arr) {
         super(arr);

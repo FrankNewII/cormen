@@ -1,4 +1,4 @@
-export class Heap {
+export default class Heap {
     constructor(arr) {
         this._heap = arr.map(v => v);
         this._build();

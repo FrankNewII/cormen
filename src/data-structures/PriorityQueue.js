@@ -1,6 +1,6 @@
-import {Heap} from '../data-structures/Heap'
+import Heap from '../data-structures/Heap'
 
-export class PriorityQueue extends Heap {
+export default class PriorityQueue extends Heap {
 
     constructor(arr) {
         super(arr);

@@ -15,7 +15,7 @@ let countingSort = algorithms.Sorter.countingSort([43,32,3,2,3,4,53,5,43,45,7,7,
 
 
 
-console.group('Sortings');
+console.group('Sorts');
 console.log('heapsSortedArr', heapsSortedArr);
 console.log('digitalSort', digitalSort);
 console.log('countingSort', countingSort);
