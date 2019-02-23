@@ -102,7 +102,7 @@ export default class Sorter {
     static _quickSortPortion(arr, startPos, toPos, currentValue) {
         currentValue = currentValue || arr[startPos];
 
-        var i = startPos,
+        let i = startPos,
             j = toPos;
 
         while (i <= j) {
@@ -113,7 +113,7 @@ export default class Sorter {
                 j--;
             }
             if (i <= j) {
-                var oldVal = arr[j];
+                let oldVal = arr[j];
                 arr[j] = arr[i];
                 arr[i] = oldVal;
                 i++;
@@ -165,7 +165,8 @@ export default class Sorter {
         let cycleTimes = 0;
 
         while (!sorted) {
-            var sortedDigits = 0;
+            let sortedDigits = 0;
+
             arr = arr.filter(v => {
                 let str = (getNumbFn && getNumbFn(v).toString()) || v.toString();
                 let strDigit = str.charAt(str.length - 1 - cycleTimes);
@@ -210,7 +211,7 @@ export default class Sorter {
         });
 
         let keys = Object.keys(sortableObj);
-        debugger;
+
         keys.forEach(v => arr.push(...Sorter.insertionSort(sortableObj[v])));
 
         return arr;

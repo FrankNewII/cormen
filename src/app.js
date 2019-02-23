@@ -12,6 +12,8 @@ let quickSortedArr = algorithms.Sorter.quickSort([43,32,3,2,3,4,53,5,43,45,7,7,6
 let insertSortedArr = algorithms.Sorter.insertionSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
 let digitalSort = algorithms.Sorter.radixSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
 let countingSort = algorithms.Sorter.countingSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
+let randomizedQuickSort = algorithms.Sorter.randomizedQuickSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
+let bucketSort = algorithms.Sorter.bucketSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
 
 
 
@@ -21,6 +23,8 @@ console.log('digitalSort', digitalSort);
 console.log('countingSort', countingSort);
 console.log('insertSortedArr', insertSortedArr);
 console.log('quickSortedArr', quickSortedArr);
+console.log('bucketSort', bucketSort);
+console.log('randomizedQuickSort', randomizedQuickSort);
 console.groupEnd();
 
 console.groupEnd();
