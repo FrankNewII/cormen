@@ -1,4 +1,5 @@
 import LinkedList from "./LinkedList";
+import HashFunctions from "../algorithms/HashFunctions";
 
 
 export default class HashTable {
@@ -6,16 +7,7 @@ export default class HashTable {
     constructor(size, hashFn) {
         this._table = Array(size);
 
-        this._hashFn = hashFn || function (v) {
-            let sum = 0;
-            let len = v.length;
-
-            while(--len) {
-                sum += v.charCodeAt(len);
-            }
-
-            return sum % size;
-        }
+        this._hashFn = hashFn || HashFunctions.universalHashing(size);
     }
 
     insert(key, val) {

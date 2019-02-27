@@ -77,33 +77,9 @@ console.log(linkedList.search(2));
 console.log(linkedList.search(1));
 console.log(linkedList.search(0));
 console.log(linkedList.delete(1));
-//console.log(linkedList);
-//console.log(linkedList.delete(2));
 console.log(linkedList);
 
 console.groupEnd();
-
-
-/*let linkedListArrays = new dataStructures.LinkedList_Arrays();
-
-linkedListArrays.insert(10);
-linkedListArrays.insert(20);
-linkedListArrays.insert(30);
-
-console.group('LinkedListArrays');
-console.log(linkedListArrays);
-console.log(linkedListArrays.search(2));
-console.log(linkedListArrays.search(1));
-console.log(linkedListArrays.search(0));
-console.log(linkedListArrays._prev, linkedListArrays._next);
-console.log(linkedListArrays.delete(1));
-linkedListArrays.insert(40);
-console.log(linkedListArrays._prev, linkedListArrays._next);
-console.log(linkedListArrays.delete(1));
-linkedListArrays.insert(50);
-console.log(linkedListArrays._prev, linkedListArrays._next);
-
-console.groupEnd();*/
 
 let hashTable = new dataStructures.HashTable(5);
 
