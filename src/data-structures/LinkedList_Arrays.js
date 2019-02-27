@@ -25,7 +25,7 @@ export default class LinkedList_Arrays {
             this._vals[emptyKey] = val;
             this._next[emptyKey] = lastIdx;
             this._prev[emptyKey] = undefined;
-            this._lastAddedKey = this._prev[lastIdx] = emptyKey;
+            this._lastAddedKey = this._next[lastIdx] = emptyKey;
         }
 
     }
@@ -40,17 +40,14 @@ export default class LinkedList_Arrays {
 
     delete(k) {
         this._emptyPlacesStack.push(k);
+
+
+        if (this._prev[k] ) this._next[this._prev[k]] = this._next[k];
+        if (this._next[k] ) this._prev[this._next[k]] = this._prev[k];
+
         this._vals[k] = undefined;
         this._next[k] = undefined;
         this._prev[k] = undefined;
-
-        if (this._prev[k + 1] !== undefined) {
-            this._prev[k + 1] = this._prev[k - 1];
-        }
-
-        if (this._next[k - 1] !== undefined) {
-            this._next[k - 1] = this._next[k + 1];
-        }
 
     }
 }

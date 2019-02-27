@@ -1,49 +1,41 @@
 export default class LinkedList {
 
-    constructor(val) {
+    insert(key, val) {
         this._head = {
+            key,
             val,
-            next: null,
-            prev: null
-        };
-    }
-
-    insert(val) {
-        this._head = {
-            val,
-            next: this._head,
+            next: this._head || null,
             prev: null
         };
 
-        this._head.next.prev = this._head;
+        if (this._head.next ) {
+            this._head.next.prev = this._head;
+        }
     }
 
-    search(k) {
+    search(key) {
         let item = this._head;
 
-        while(k--) {
-            item = item.next;
+        do {
+            if (item) {
+                if (item.key === key) {
+                    return item;
+                }
 
-            if (!item) {
-                return undefined;
+                item = item.next;
             }
-        }
 
-        return item ? item : undefined;
+        } while(item);
+
     }
 
-    delete(k) {
-        let item = this.search(k);
-        console.log(item);
+    delete(key) {
+        let item = this.search(key);
+
         let next = item.next;
         let prev = item.prev;
 
         if (next) next.prev = prev;
         if (prev) prev.next = next;
-
-        if (k === 0) {
-            this._head = next;
-        }
-
     }
 }

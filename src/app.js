@@ -65,27 +65,26 @@ console.log(queue.dequeue());
 console.log(queue.isEmpty());
 console.groupEnd();
 
-let linkedList = new dataStructures.LinkedList(0);
+let linkedList = new dataStructures.LinkedList();
 
-linkedList.insert(1);
-linkedList.insert(2);
-linkedList.insert(3);
+linkedList.insert(0, 1);
+linkedList.insert(1, 2);
+linkedList.insert(2, 3);
 
 console.group('LinkedList');
 console.log(linkedList);
-console.log(linkedList.search(3));
 console.log(linkedList.search(2));
 console.log(linkedList.search(1));
 console.log(linkedList.search(0));
-console.log(linkedList.delete(0));
-console.log(linkedList);
-console.log(linkedList.delete(2));
+console.log(linkedList.delete(1));
+//console.log(linkedList);
+//console.log(linkedList.delete(2));
 console.log(linkedList);
 
 console.groupEnd();
 
 
-let linkedListArrays = new dataStructures.LinkedList_Arrays(0);
+/*let linkedListArrays = new dataStructures.LinkedList_Arrays();
 
 linkedListArrays.insert(10);
 linkedListArrays.insert(20);
@@ -93,11 +92,32 @@ linkedListArrays.insert(30);
 
 console.group('LinkedListArrays');
 console.log(linkedListArrays);
-console.log(linkedListArrays.search(3));
 console.log(linkedListArrays.search(2));
 console.log(linkedListArrays.search(1));
 console.log(linkedListArrays.search(0));
-console.log(linkedListArrays.delete(0));
-console.log(linkedListArrays);
+console.log(linkedListArrays._prev, linkedListArrays._next);
+console.log(linkedListArrays.delete(1));
+linkedListArrays.insert(40);
+console.log(linkedListArrays._prev, linkedListArrays._next);
+console.log(linkedListArrays.delete(1));
+linkedListArrays.insert(50);
+console.log(linkedListArrays._prev, linkedListArrays._next);
+
+console.groupEnd();*/
+
+let hashTable = new dataStructures.HashTable(5);
+
+hashTable.insert('artem',  10);
+hashTable.insert('den',  20);
+hashTable.insert('ben',  30);
+
+console.group('HashTable');
+console.log(hashTable);
+console.log(hashTable.search('artem'));
+console.log(hashTable.search('den'));
+console.log(hashTable.search('ben' ));
+console.log(hashTable);
+
+console.groupEnd();
 
 console.groupEnd();
