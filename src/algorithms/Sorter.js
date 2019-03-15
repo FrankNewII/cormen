@@ -4,7 +4,8 @@ import Numbers from "./Numbers";
 export default class Sorter {
     constructor() {
         throw new Error({
-            section: 'sorting',
+            section: 'algorithms',
+            type: 'sorting',
             code: 1
         });
 
@@ -48,7 +49,7 @@ export default class Sorter {
         let sortedArr = new Array(arr.length);
 
         for (let i = 1; i < countedDigits.length; i++) {
-            var key = countedDigits[i];
+            let key = countedDigits[i];
             countingObj[key] = countingObj[key] + countingObj[countedDigits[i - 1]];
         }
 

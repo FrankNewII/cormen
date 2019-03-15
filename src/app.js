@@ -1,5 +1,6 @@
 import { algorithms } from "./algorithms/index";
 import { dataStructures } from "./data-structures/index";
+import HashTable_OpenAddress_DoubleHashing from "./data-structures/HashTable_OpenAddress_DoubleHashing";
 
 /**
  * Algorithms
@@ -95,5 +96,23 @@ console.log(hashTable.search('ben' ));
 console.log(hashTable);
 
 console.groupEnd();
+
+console.groupEnd();
+
+let hashTable_OpenAddress = new dataStructures.HashTable_OpenAddress_DoubleHashing(10);
+
+hashTable_OpenAddress.insert('artem',  10);
+hashTable_OpenAddress.insert('den',  20);
+hashTable_OpenAddress.insert('ben',  30);
+
+console.group('HashTable');
+console.log(hashTable_OpenAddress);
+console.log(hashTable_OpenAddress.search('artem'));
+console.log(hashTable_OpenAddress.search('den'));
+console.log(hashTable_OpenAddress.search('ben' ));
+console.log(hashTable_OpenAddress);
+
+console.groupEnd();
+
 
 console.groupEnd();
