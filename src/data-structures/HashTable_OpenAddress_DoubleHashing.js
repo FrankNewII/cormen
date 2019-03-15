@@ -7,7 +7,7 @@ export default class HashTable_OpenAddress_DoubleHashing {
         this._table = Array(size);
 
         this._size = size;
-        this._hashFn = hashFn || HashFunctions.universalHashing(size);
+        this._hashFn = hashFn || HashFunctions.division.bind(null, size);
         this._hashFn2 = hashFn2 || HashFunctions.multiplication.bind(null, size);
     }
 

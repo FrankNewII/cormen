@@ -1,6 +1,5 @@
-import { algorithms } from "./algorithms/index";
-import { dataStructures } from "./data-structures/index";
-import HashTable_OpenAddress_DoubleHashing from "./data-structures/HashTable_OpenAddress_DoubleHashing";
+import {algorithms} from "./algorithms/index";
+import {dataStructures} from "./data-structures/index";
 
 /**
  * Algorithms
@@ -8,14 +7,13 @@ import HashTable_OpenAddress_DoubleHashing from "./data-structures/HashTable_Ope
 
 console.group('Algorithms');
 
-let heapsSortedArr = algorithms.Sorter.heapSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
-let quickSortedArr = algorithms.Sorter.quickSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
-let insertSortedArr = algorithms.Sorter.insertionSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
-let digitalSort = algorithms.Sorter.radixSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
-let countingSort = algorithms.Sorter.countingSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
-let randomizedQuickSort = algorithms.Sorter.randomizedQuickSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
-let bucketSort = algorithms.Sorter.bucketSort([43,32,3,2,3,4,53,5,43,45,7,7,66,4545,67,445,3,345,5]);
-
+let heapsSortedArr = algorithms.Sorter.heapSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
+let quickSortedArr = algorithms.Sorter.quickSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
+let insertSortedArr = algorithms.Sorter.insertionSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
+let digitalSort = algorithms.Sorter.radixSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
+let countingSort = algorithms.Sorter.countingSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
+let randomizedQuickSort = algorithms.Sorter.randomizedQuickSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
+let bucketSort = algorithms.Sorter.bucketSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
 
 
 console.group('Sorts');
@@ -29,7 +27,6 @@ console.log('randomizedQuickSort', randomizedQuickSort);
 console.groupEnd();
 
 console.groupEnd();
-
 
 
 /**
@@ -82,36 +79,71 @@ console.log(linkedList);
 
 console.groupEnd();
 
+
+
 let hashTable = new dataStructures.HashTable(5);
 
-hashTable.insert('artem',  10);
-hashTable.insert('den',  20);
-hashTable.insert('ben',  30);
+hashTable.insert('artem', 10);
+hashTable.insert('den', 20);
+hashTable.insert('ben', 30);
 
 console.group('HashTable');
 console.log(hashTable);
 console.log(hashTable.search('artem'));
 console.log(hashTable.search('den'));
-console.log(hashTable.search('ben' ));
+console.log(hashTable.search('ben'));
 console.log(hashTable);
 
 console.groupEnd();
 
-console.groupEnd();
+
+
+
+
 
 let hashTable_OpenAddress = new dataStructures.HashTable_OpenAddress_DoubleHashing(10);
 
-hashTable_OpenAddress.insert('artem',  10);
-hashTable_OpenAddress.insert('den',  20);
-hashTable_OpenAddress.insert('ben',  30);
+hashTable_OpenAddress.insert('artem', 10);
+hashTable_OpenAddress.insert('den', 20);
+hashTable_OpenAddress.insert('ned', 20);
+hashTable_OpenAddress.insert('nde', 201);
+hashTable_OpenAddress.insert('ben', 30);
 
-console.group('HashTable');
+console.group('HashTable_OpenAddress');
 console.log(hashTable_OpenAddress);
 console.log(hashTable_OpenAddress.search('artem'));
 console.log(hashTable_OpenAddress.search('den'));
-console.log(hashTable_OpenAddress.search('ben' ));
+console.log(hashTable_OpenAddress.search('ben'));
+console.log(hashTable_OpenAddress.search('nde'));
 console.log(hashTable_OpenAddress);
 
+console.groupEnd();
+
+
+
+
+
+let searchTree = new dataStructures.SearchTree();
+
+searchTree.insert(0, 10);
+searchTree.insert(100, 100);
+searchTree.insert(50, 50);
+searchTree.insert(25, 25);
+searchTree.insert(25, 252);
+
+console.group('SearchTree');
+console.log(searchTree);
+console.log(searchTree.search(0));
+console.log(searchTree.search(100));
+console.log(searchTree.search(50));
+console.log(searchTree.search(25));
+console.log(searchTree.search(25));
+console.log(searchTree.minimum());
+console.log(searchTree.maximum());
+console.log(searchTree.inordered(searchTree._root));
+console.log(searchTree);
+
+console.groupEnd();
 console.groupEnd();
 
 

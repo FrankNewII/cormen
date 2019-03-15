@@ -7,6 +7,11 @@ import LinkedList from "./LinkedList";
 import LinkedList_Arrays from "./LinkedList_Arrays";
 import HashTable from "./HashTable";
 import HashTable_OpenAddress_DoubleHashing from "./HashTable_OpenAddress_DoubleHashing";
+import SearchTree from "./SearchTree";
 
-export const dataStructures = {Heap, MaxHeap, PriorityQueue,
-    Stack, Queue, LinkedList, LinkedList_Arrays, HashTable, HashTable_OpenAddress_DoubleHashing};
+export const dataStructures = {
+    Heap, MaxHeap, PriorityQueue,
+    Stack, Queue, LinkedList, LinkedList_Arrays, HashTable,
+    HashTable_OpenAddress_DoubleHashing,
+    SearchTree
+};

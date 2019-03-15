@@ -85,7 +85,7 @@ export default class OrderStatistics {
 
         let medianOfMedians = OrderStatistics.median( Sorter.insertionSort(medians) );
 
-        let k = Sortings._quickSortPortion(arr, 0, arr.length - 1, medianOfMedians);
+        let k = Sorter._quickSortPortion(arr, 0, arr.length - 1, medianOfMedians);
 
         if (i === k ) {
             return arr[k];
