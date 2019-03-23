@@ -15,7 +15,7 @@ export default class HashTable_OpenAddress_DoubleHashing {
 
         let i = 0;
 
-        while (i <= this._size ) {
+        while (i < this._size ) {
             let hashedKey = this.generateKey(key, i);
 
             if (this._table[hashedKey] === undefined) {
@@ -54,6 +54,9 @@ export default class HashTable_OpenAddress_DoubleHashing {
 
 
     generateKey(k, i) {
-        return ( this._hashFn(k) + i * this._hashFn2(k) ) % this._size;
+        let h1 = this._hashFn(k);
+        let h2 = this._hashFn2(k);
+
+        return ( h1 + i * h2 ) % this._size;
     }
 }

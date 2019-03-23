@@ -2,7 +2,7 @@ export default class SearchTree {
 
     insert(key, val) {
         if (!this._root) {
-            this._root = this._createVertex(key, val );
+            return this._root = this._createVertex(key, val );
         } else {
             let vertex = this._root;
             let lastVtx = vertex;
@@ -26,6 +26,8 @@ export default class SearchTree {
             } else {
                 lastVtx.right = vertex;
             }
+
+            return vertex;
         }
 
 
@@ -49,12 +51,38 @@ export default class SearchTree {
         } while(vertex);
     }
 
-    delete(key) {
+    delete(vertex) {
+        let parent = vertex.parent;
 
+        if ( !vertex.right && !vertex.left ) { //child-free
+            if ( parent ) {
+                if (parent.left === vertex) {
+                    parent.left = null;
+                } else {
+                    parent.right = null;
+                }
+            }
+        } else if (!vertex.right || !vertex.left ) { //child
+            let child = vertex.right || vertex.left;
+
+            if (parent.left === vertex ) {
+                parent.left = child;
+            } else {
+                parent.right = child;
+            }
+
+            child.parent = parent;
+        } else { //children
+            let next = this.successor(vertex);
+            vertex.key = next.key;
+            vertex.val = next.val;
+
+            this.delete(next);
+        }
     }
 
-    minimum() {
-        let vertex = this._root;
+    minimum(vertex) {
+        vertex = vertex || this._root;
 
         while (vertex) {
             if (vertex.left === null ) {
@@ -65,8 +93,8 @@ export default class SearchTree {
         }
     }
 
-    maximum() {
-        let vertex = this._root;
+    maximum(vertex) {
+        vertex = vertex || this._root;
 
         while (vertex) {
             if (vertex.right === null ) {
@@ -77,21 +105,63 @@ export default class SearchTree {
         }
     }
 
-    predecessor(k) {
+    predecessor(vertex) {
+        if (vertex.left !== null ) {
+            return this.maximum(vertex.left);
+        }
 
+        let next = vertex.parent;
+
+        while(next !== null && vertex === next.left ) {
+            vertex = next;
+            next = next.parent;
+        }
+
+        return next;
     }
 
-    successor(k) {
+    successor(vertex) {
+        if (vertex.right !== null ) {
+            return this.minimum(vertex.right);
+        }
 
+        let next = vertex.parent;
+
+        while(next !== null && vertex === next.right ) {
+            vertex = next;
+            next = next.parent;
+        }
+
+        return next;
     }
 
 
-    inordered(x) {
+    inOrdered(vertex, fn) {
         if ( this._root ) {
-            if (x) {
-                this.inordered(x.left);
-                console.log(x.key);
-                this.inordered(x.right);
+            if (vertex) {
+                this.inOrdered(vertex.left, fn);
+                fn(vertex.key);
+                this.inOrdered(vertex.right, fn);
+            }
+        }
+    }
+
+    postOrdered(vertex, fn) {
+        if ( this._root ) {
+            if (vertex) {
+                this.inOrdered(vertex.left, fn);
+                this.inOrdered(vertex.right, fn);
+                fn(vertex.key);
+            }
+        }
+    }
+
+    preOrdered(vertex, fn) {
+        if ( this._root ) {
+            if (vertex) {
+                fn(vertex.key);
+                this.inOrdered(vertex.left, fn);
+                this.inOrdered(vertex.right, fn);
             }
         }
     }

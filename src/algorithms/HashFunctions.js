@@ -23,7 +23,7 @@ export default class HashFunctions {
         let sum = 0;
         let len = (""+ v).length;
 
-        while(--len) {
+        while(len--) {
             sum += v.charCodeAt(len);
         }
 

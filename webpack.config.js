@@ -13,6 +13,8 @@ module.exports = {
         port: 9000
     },
     plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: 'src/index.html'
+        })
     ]
 };

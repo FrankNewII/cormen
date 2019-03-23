@@ -26,6 +26,11 @@ console.log('bucketSort', bucketSort);
 console.log('randomizedQuickSort', randomizedQuickSort);
 console.groupEnd();
 
+console.group('Numeric');
+console.log('random fr. 5 to 100', algorithms.Numbers.random(5, 100));
+
+console.groupEnd();
+
 console.groupEnd();
 
 
@@ -81,17 +86,30 @@ console.groupEnd();
 
 
 
+let heap = new dataStructures.Heap([1,2,3,4,5,6,7,8,9]);
+
+console.group('Heap');
+console.log(heap);
+console.log(heap.extractHighest());
+console.log(heap.extractHighest());
+console.log(heap.extractHighest());
+console.log(heap);
+
+console.groupEnd();
+
+
+
 let hashTable = new dataStructures.HashTable(5);
 
-hashTable.insert('artem', 10);
-hashTable.insert('den', 20);
-hashTable.insert('ben', 30);
+hashTable.insert('a', 10);
+hashTable.insert('b', 20);
+hashTable.insert('c', 30);
 
 console.group('HashTable');
 console.log(hashTable);
-console.log(hashTable.search('artem'));
-console.log(hashTable.search('den'));
-console.log(hashTable.search('ben'));
+console.log(hashTable.search('a'));
+console.log(hashTable.search('b'));
+console.log(hashTable.search('c'));
 console.log(hashTable);
 
 console.groupEnd();
@@ -103,18 +121,18 @@ console.groupEnd();
 
 let hashTable_OpenAddress = new dataStructures.HashTable_OpenAddress_DoubleHashing(10);
 
-hashTable_OpenAddress.insert('artem', 10);
-hashTable_OpenAddress.insert('den', 20);
-hashTable_OpenAddress.insert('ned', 20);
-hashTable_OpenAddress.insert('nde', 201);
-hashTable_OpenAddress.insert('ben', 30);
+hashTable_OpenAddress.insert('a', 10);
+hashTable_OpenAddress.insert('b', 20);
+hashTable_OpenAddress.insert('c', 20);
+hashTable_OpenAddress.insert('d', 201);
+hashTable_OpenAddress.insert('e', 30);
 
 console.group('HashTable_OpenAddress');
 console.log(hashTable_OpenAddress);
-console.log(hashTable_OpenAddress.search('artem'));
-console.log(hashTable_OpenAddress.search('den'));
-console.log(hashTable_OpenAddress.search('ben'));
-console.log(hashTable_OpenAddress.search('nde'));
+console.log(hashTable_OpenAddress.search('a'));
+console.log(hashTable_OpenAddress.search('b'));
+console.log(hashTable_OpenAddress.search('c'));
+console.log(hashTable_OpenAddress.search('d'));
 console.log(hashTable_OpenAddress);
 
 console.groupEnd();
@@ -125,26 +143,85 @@ console.groupEnd();
 
 let searchTree = new dataStructures.SearchTree();
 
-searchTree.insert(0, 10);
-searchTree.insert(100, 100);
-searchTree.insert(50, 50);
-searchTree.insert(25, 25);
-searchTree.insert(25, 252);
+searchTree.insert(15, 15);
+searchTree.insert(5, 5);
+searchTree.insert(3, 3);
+searchTree.insert(12, 12);
+searchTree.insert(10, 10);
+searchTree.insert(13, 13);
+searchTree.insert(6, 6);
+searchTree.insert(7, 7);
+searchTree.insert(16, 16);
+searchTree.insert(20, 20);
+searchTree.insert(18, 18);
+searchTree.insert(23, 23);
 
 console.group('SearchTree');
 console.log(searchTree);
-console.log(searchTree.search(0));
-console.log(searchTree.search(100));
-console.log(searchTree.search(50));
-console.log(searchTree.search(25));
-console.log(searchTree.search(25));
+console.log(searchTree.search(15));
+console.log(searchTree.search(23));
+console.log(searchTree.search(16));
+console.log(searchTree.search(3));
+console.log('successor', searchTree.successor(searchTree.search(20)));
+console.log('predecessor', searchTree.predecessor(searchTree.search(7)));
 console.log(searchTree.minimum());
 console.log(searchTree.maximum());
-console.log(searchTree.inordered(searchTree._root));
-console.log(searchTree);
+
+let inOrder = [];
+searchTree.inOrdered(searchTree._root, v => inOrder.push(v));
+
+console.log(inOrder);
+
+inOrder.length = 0;
+searchTree.delete(searchTree.search(5));
+searchTree.inOrdered(searchTree._root, v => inOrder.push(v));
+console.log(inOrder);
+
+inOrder.length = 0;
+searchTree.delete(searchTree.search(15));
+searchTree.inOrdered(searchTree._root, v => inOrder.push(v));
+console.log(inOrder);
 
 console.groupEnd();
 console.groupEnd();
+
+
+
+
+
+
+let rbSearchTree = new dataStructures.RedBlackTree();
+
+rbSearchTree.insert(15, 15);
+rbSearchTree.insert(5, 5);
+rbSearchTree.insert(3, 3);
+
+console.group('RedBlackTree');
+console.log(rbSearchTree);
+console.log(rbSearchTree.search(15));
+console.log(rbSearchTree.search(5));
+console.log('successor', rbSearchTree.successor(rbSearchTree.search(5)));
+console.log('predecessor', rbSearchTree.predecessor(rbSearchTree.search(5)));
+console.log(rbSearchTree.minimum());
+console.log(rbSearchTree.maximum());
+
+console.groupEnd();
+console.groupEnd();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 console.groupEnd();
