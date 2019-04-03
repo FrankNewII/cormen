@@ -3,4 +3,6 @@ import OrderStatistics from "./OrderStatistics";
 import Sorter from "./Sorter";
 import HashFunctions from "./HashFunctions";
 
-export const algorithms = {Numbers, OrderStatistics, Sorter, HashFunctions};
+const algorithms = {Numbers, OrderStatistics, Sorter, HashFunctions};
+
+export default algorithms;

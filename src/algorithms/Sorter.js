@@ -12,32 +12,56 @@ export default class Sorter {
     }
 
 
-    /*static mergeSort(arr, start, to ) {
+    static mergeSort(arr, from, to) {
 
-        if ( start === undefined ) {
-            start = 0;
+        if (from === undefined) {
+            from = 0;
             to = arr.length - 1;
         }
 
-        if ( to - start > 1 ) {
-            let idx = Math.floor((to - start) / 2 );
+        if (arr.length > 1 && to - from >= 1) {
 
-            Sorter.mergeSort(arr, start, idx );
-            Sorter.mergeSort(arr, idx + 1, to );
-            Sorter._mergeSortUnite(arr, start, to, idx);
+            let divide = Math.floor((to - from) / 2);
+
+            Sorter.mergeSort(arr, from, from + divide);
+            Sorter.mergeSort(arr, from + divide + 1, to);
+            Sorter._mergeSortMerge(arr, from, from + divide, from + divide + 1, to);
         }
 
         return arr;
     }
 
-    static _mergeSortUnite(arr, start, divideIdx, to) {
-        for (let i = start; i < divideIdx; i++ ) {
-            let v1 = arr[i];
-            let id2 = divideIdx;
+    static _mergeSortMerge(arr, from, to, from2, to2) {
+        let tmpArr = [];
+        let i = from, i2 = from2, i3 = 0;
 
-            while(arr[id2] < v1 && id2 <= to ) id2++;
+        while(i <= to && i2 <= to2 ) {
+            let a = arr[i],
+                b = arr[i2];
+
+            if (a > b) {
+                tmpArr[i3++] = b;
+                i2++;
+            } else if (b > a ) {
+                tmpArr[i3++] = a;
+                i++;
+            } else {
+                tmpArr[i3++] = a;
+                tmpArr[i3++] = b;
+                i++; i2++;
+            }
         }
-    }*/
+
+        while(i <= to ) {
+            tmpArr[i3++] = arr[i++];
+        }
+
+        while(i2 <= to2 ) {
+            tmpArr[i3++] = arr[i2++];
+        }
+
+        tmpArr.forEach( (v, i) => arr[i + from] = v);
+    }
 
     static countingSort(arr) {
         let countingObj = {};
@@ -85,7 +109,7 @@ export default class Sorter {
             toPos = arr.length - 1;
         }
 
-        if (startPos < toPos ) {
+        if (startPos < toPos) {
             let divideIdx = Sorter._quickSortPortion(arr, startPos, toPos);
 
             if (startPos < divideIdx - 1) {

@@ -1,5 +1,5 @@
-import {algorithms} from "./algorithms/index";
-import {dataStructures} from "./data-structures/index";
+import algorithms from "./algorithms/index";
+import dataStructures from "./data-structures/index";
 
 /**
  * Algorithms
@@ -14,6 +14,7 @@ let digitalSort = algorithms.Sorter.radixSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45
 let countingSort = algorithms.Sorter.countingSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
 let randomizedQuickSort = algorithms.Sorter.randomizedQuickSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
 let bucketSort = algorithms.Sorter.bucketSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
+let mergeSort = algorithms.Sorter.mergeSort([43, 32, 3, 2, 3, 4, 53, 5, 43, 45, 7, 7, 66, 4545, 67, 445, 3, 345, 5]);
 
 
 console.group('Sorts');
@@ -24,6 +25,7 @@ console.log('insertSortedArr', insertSortedArr);
 console.log('quickSortedArr', quickSortedArr);
 console.log('bucketSort', bucketSort);
 console.log('randomizedQuickSort', randomizedQuickSort);
+console.log('mergeSort', mergeSort);
 console.groupEnd();
 
 console.group('Numeric');
@@ -200,11 +202,6 @@ console.group('RedBlackTree');
 console.log(rbSearchTree);
 console.log(rbSearchTree.search(15));
 console.log(rbSearchTree.search(5));
-console.log('successor', rbSearchTree.successor(rbSearchTree.search(5)));
-console.log('predecessor', rbSearchTree.predecessor(rbSearchTree.search(5)));
-console.log(rbSearchTree.minimum());
-console.log(rbSearchTree.maximum());
-
 console.groupEnd();
 console.groupEnd();
 
